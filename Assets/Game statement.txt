@@ -1,0 +1,44 @@
+Input system: Have a file that reads all player inputs and records what frame what buttons were pressed on. 
+Use FGC standard numpad thing:
+                              7 8 9
+                              4 5 6
+                              1 2 3
+In input script every frame record what buttons are being pressed and determine key,#(1-9):frame.
+Most likely create a struct that takes a key enum, then a 1-9 for inputs, and the frame#.
+Have an interpretor function to determine what input does what at that frame, as well as another function for advanced input detection(bool QCF, upon being true sees if the current char has a QCF motion)
+//call it when the attack key(D) is pressed
+bool QCF(struct current(the struct whose frame is the same when we hit D)){
+//Look at past X inputs from past X frames and return true if its close enough, false if nothing.
+Get the frame from current, check the previous 20 frames for 2, 3, and 6. If any other numbers were pressed in between the chain of 2, 3, 6 and the Attack key then cancel the chain and try again. 
+If the chain was never completed, return false, else return true if the chain is completed without issues.
+Have a maximum of 5 frames inbetween each input, if it exceeds that, reset the chain.
+}
+Then create other more complex inputs using the same formula for QCF.
+how much leniency is too much?
+
+
+Characters:
+Create a standard class and the characters will be objects, when the input system does something, it'll call the currentCharacter's method of whatever that something is.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Collision boxes:
+Each player should have a collision box that is just there, and when they hit D they throw out an attack box, when an attack box hits a collision box, the console should output:
+'owner of attack box' + ' has hit ' + ' owner of collision box'.
+
